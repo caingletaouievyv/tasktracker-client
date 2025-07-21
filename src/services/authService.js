@@ -9,12 +9,8 @@ const API_URL = `${API_BASE_URL}/account`;
 export const login = async (credentials) => {
   try {
     const response = await axios.post(`${API_URL}/login`, credentials);
-    console.log('Login successful:', response.data);
-
     const { token, refreshToken } = response.data;
-
     setTokens(token, refreshToken);
-
     return token;
   } catch (error) {
     console.error('Login API error:', error.response?.data || error.message);
