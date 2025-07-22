@@ -1,16 +1,16 @@
-//src/components/DeleteModal/DeleteModal.jsx
+// src/components/common/DeleteModal.jsx
 
-import React from 'react';
+import React from 'react';  
 import { Modal, Button } from 'react-bootstrap';
 
-const DeleteModal = ({ show, onClose, onConfirm, task }) => {
+const DeleteModal = ({ show, onClose, onConfirm, itemLabel = 'item' }) => {
   return (
     <Modal show={show} onHide={onClose} centered>
       <Modal.Header closeButton>
-        <Modal.Title>Delete Task</Modal.Title>
+        <Modal.Title>Confirm Delete</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        Are you sure you want to delete <strong>"{task?.title}"</strong>?
+        Are you sure you want to delete <strong>"{itemLabel}"</strong>?
       </Modal.Body>
       <Modal.Footer>
         <Button variant="danger" onClick={onConfirm}>
@@ -25,5 +25,6 @@ const DeleteModal = ({ show, onClose, onConfirm, task }) => {
 };
 
 export default DeleteModal;
+
 
 

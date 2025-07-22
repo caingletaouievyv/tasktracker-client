@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import adminService from '../../services/adminService';
 import { Spinner, Table, Button } from 'react-bootstrap';
 import EditTaskForm from '../Task/EditTaskForm';
-import DeleteModal from '../Task/DeleteModal';
+import DeleteModal from '../common/DeleteModal';
 
 export default function TasksManagement() {
   const [tasks, setTasks] = useState([]);

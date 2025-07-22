@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { deleteTask, updateTask } from '../../services/taskService'; 
 import EditTaskForm from '../Task//EditTaskForm';
-import DeleteModal from '../Task//DeleteModal';
+import DeleteModal from '../common//DeleteModal';
 import Spinner from 'react-bootstrap/Spinner';
 import { exportTasksAsCSV, exportTasksAsPDF } from "../../services/taskService";
 import { useTheme } from '../../contexts/ThemeContext';

@@ -3,13 +3,15 @@
 import React, { useEffect, useState } from 'react';
 import adminService from '../../services/adminService';
 import { Spinner, Table, Button, Form } from 'react-bootstrap';
+import DeleteModal from '../common/DeleteModal';
 
 export default function UsersManagement() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingRoleId, setEditingRoleId] = useState(null);
   const [roleDraft, setRoleDraft] = useState('');
-
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [userToDelete, setUserToDelete] = useState(null);
   useEffect(() => {
     adminService.getAllUsers()
       .then(setUsers)
@@ -23,9 +25,11 @@ export default function UsersManagement() {
     setEditingRoleId(null);
   };
 
-  const handleDeleteUser = async (userId) => {
-    await adminService.deleteUser(userId);
-    setUsers(users.filter(u => u.id !== userId));
+  const confirmDeleteUser = async () => {
+    if (!userToDelete) return;
+    await adminService.deleteUser(userToDelete.id);
+    setUsers(users.filter(u => u.id !== userToDelete.id));
+    setShowDeleteModal(false);
   };
 
   if (loading) return <Spinner animation="border" />;
@@ -88,7 +92,14 @@ export default function UsersManagement() {
                     >
                       Edit Role
                     </Button>{' '}
-                    <Button size="sm" variant="danger" onClick={() => handleDeleteUser(user.id)}>
+                    <Button
+                      size="sm"
+                      variant="danger"
+                      onClick={() => {
+                        setUserToDelete(user);
+                        setShowDeleteModal(true);
+                      }}
+                    >
                       Delete
                     </Button>
                   </>
@@ -98,6 +109,12 @@ export default function UsersManagement() {
           ))}
         </tbody>
       </Table>
+      <DeleteModal
+        show={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onConfirm={confirmDeleteUser}
+        itemLabel={userToDelete?.userName}
+      />
     </div>
   );
 }
