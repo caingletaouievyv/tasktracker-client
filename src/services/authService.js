@@ -5,6 +5,7 @@ import API_BASE_URL from '../config/apiConfig';
 
 // const API_URL = 'https://localhost:7010/api/account';
 const API_URL = `${API_BASE_URL}/account`;
+const TOKEN_KEY = 'token';
 
 export const login = async (credentials) => {
   try {
@@ -18,13 +19,14 @@ export const login = async (credentials) => {
   }
 };
 
-
 export const register = async (userInfo) => {
-  const response = await axios.post(`${API_URL}/register`, userInfo);
-  return response.data;
+  try {
+    const response = await axios.post(`${API_URL}/register`, userInfo);
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
 };
-
-const TOKEN_KEY = 'token';
 
 export const setTokens = (accessToken) => {
   localStorage.setItem(TOKEN_KEY, accessToken);
