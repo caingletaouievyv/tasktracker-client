@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 
 const LoginView = () => {
   const [credentials, setCredentials] = useState({ userName: '', password: '' });
@@ -54,7 +55,7 @@ const handleSubmit = async (e) => {
           {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
-      
+
       <p style={{ marginTop: '1rem' }}>
       Don’t have an account? <Link to="/register">Register here</Link>
       </p>

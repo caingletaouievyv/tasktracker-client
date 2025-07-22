@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { register } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 
 const RegisterView = () => {
   const [userInfo, setUserInfo] = useState({
