@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { register } from '../services/authService';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom'; 
+import { useNavigate, Link } from 'react-router-dom';
+import AuthCardLayout from '../components/Auth/AuthCardLayout';
 
 const RegisterView = () => {
   const [userInfo, setUserInfo] = useState({
@@ -40,48 +40,58 @@ const RegisterView = () => {
   };
 
   return (
-    <>
+    <AuthCardLayout title="Register">
+      {error && <div className="alert alert-danger">{error}</div>}
+      {success && <div className="alert alert-success">{success}</div>}
       <form onSubmit={handleSubmit}>
-        <h2>Register</h2>
-        {error && <div style={{ color: 'red' }}>{error}</div>}
-        {success && <div style={{ color: 'green' }}>{success}</div>}
-        <input
-          type="text"
-          placeholder="Username"
-          value={userInfo.userName}
-          onChange={(e) => setUserInfo({ ...userInfo, userName: e.target.value })}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={userInfo.email}
-          onChange={(e) => setUserInfo({ ...userInfo, email: e.target.value })}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={userInfo.password}
-          onChange={(e) => setUserInfo({ ...userInfo, password: e.target.value })}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          value={userInfo.confirmPassword}
-          onChange={(e) => setUserInfo({ ...userInfo, confirmPassword: e.target.value })}
-          required
-        />
-        <button type="submit" disabled={loading}>
+        <div className="mb-3">
+          <input
+            className="form-control"
+            type="text"
+            placeholder="Username"
+            value={userInfo.userName}
+            onChange={(e) => setUserInfo({ ...userInfo, userName: e.target.value })}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <input
+            className="form-control"
+            type="email"
+            placeholder="Email"
+            value={userInfo.email}
+            onChange={(e) => setUserInfo({ ...userInfo, email: e.target.value })}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <input
+            className="form-control"
+            type="password"
+            placeholder="Password"
+            value={userInfo.password}
+            onChange={(e) => setUserInfo({ ...userInfo, password: e.target.value })}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <input
+            className="form-control"
+            type="password"
+            placeholder="Confirm Password"
+            value={userInfo.confirmPassword}
+            onChange={(e) => setUserInfo({ ...userInfo, confirmPassword: e.target.value })}
+            required
+          />
+        </div>
+        <button className="btn btn-success w-100" type="submit" disabled={loading}>
           {loading ? 'Registering...' : 'Register'}
         </button>
       </form>
-
-      <p style={{ marginTop: '1rem' }}>
-        Already have an account? <Link to="/login">Login here</Link>
+      <p className="mt-3 text-center">
+        Already have an account? <Link to="/login">Login</Link>
       </p>
-    </>
+    </AuthCardLayout>
   );
 };
 

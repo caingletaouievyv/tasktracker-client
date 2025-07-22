@@ -6,7 +6,6 @@ import { updateTokenExpiryFromToken } from '../utils/tokenUtils';
 import API_BASE_URL from '../config/apiConfig';
 
 const api = axios.create({
-  // baseURL: 'https://localhost:7010/api',
   baseURL: API_BASE_URL,
   withCredentials: true
 });

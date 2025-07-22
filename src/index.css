@@ -53,6 +53,7 @@ body.dark .modal-content {
 }
 
 body.dark .border,
+
 body.dark hr {
   border-color: #444 !important;
 }
@@ -67,4 +68,13 @@ body.dark .nav-tabs .nav-link.active {
   background-color: #2a2a2a;
   color: #f1f1f1;
   border-color: #555;
+}
+
+::placeholder {
+  color: #bbb !important;
+  opacity: 1;
+}
+
+[data-theme='dark'] ::placeholder {
+  color: #ddd !important;
 }

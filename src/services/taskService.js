@@ -3,7 +3,6 @@
 import axiosAPI from '../api/axiosInstance';
 import API_BASE_URL from '../config/apiConfig';
 
-// const API_URL = 'https://localhost:7010/api/tasks';
 const API_URL = `${API_BASE_URL}/tasks`;
 
 export const getTasks = async (filter, searchTerm, sortBy, sortOrder) => {
